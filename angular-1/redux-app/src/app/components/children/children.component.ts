@@ -1,4 +1,7 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducers';
+import * as actions from 'src/app/redux/counter.actions';
 
 @Component({
   selector: 'app-children',
@@ -6,14 +9,16 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./children.component.scss'],
 })
 export class ChildrenComponent implements OnInit {
-  @Input() counter!: number;
-  @Output() changeCounter = new EventEmitter<number>();
-  constructor() {}
+  counter!: number;
+  constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.select('count').subscribe((count) => {
+      this.counter = count;
+    });
+  }
 
-  resetChildren() {
-    this.counter = 0;
-    this.changeCounter.emit(this.counter)
+  reset() {
+    this.store.dispatch(actions.reset());
   }
 }
