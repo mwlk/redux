@@ -8,7 +8,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { ChildrenComponent } from './components/children/children.component';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './redux/counter.reducer';
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [AppComponent, CounterComponent, ChildrenComponent],
   imports: [
@@ -17,8 +17,8 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
     StoreModule.forRoot({ count: counterReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
-    })
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
