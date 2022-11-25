@@ -1,1 +1,5 @@
 basic/.dccache
+.dccache
+
+.vscode*
+.dccache
